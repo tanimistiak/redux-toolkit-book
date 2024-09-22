@@ -8,7 +8,6 @@ const ListBook = () => {
   const handleDelete = (id) => {
     dispatch(deleteBook(id));
   };
-  console.log(books);
   return (
     <div>
       {books && books?.length > 0 ? (

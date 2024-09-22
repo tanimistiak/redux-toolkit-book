@@ -1,18 +1,25 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createBook } from "../app/features/Book/BookSlice";
 
 const CreateBook = () => {
   const [book, setBook] = useState({
     name: "",
     price: "",
   });
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log(name);
-    setBook((prevBook) => ({ ...prevBook, [name]: value }));
+    setBook((prevBook) => ({ ...prevBook, [name]: value, id: 11 }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createBook(book));
   };
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="book name"
@@ -27,6 +34,7 @@ const CreateBook = () => {
           value={book.price}
           onChange={handleChange}
         />
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
