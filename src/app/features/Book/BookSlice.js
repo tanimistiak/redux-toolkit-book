@@ -29,10 +29,16 @@ const bookSlice = createSlice({
       //   console.log(action.payload);
       const newBook = [...state.books, action.payload];
       state.books = newBook;
+
       //   state.books = newBook;
       //   state.books = state.books.push(action.payload);
     },
+    editBookR: (state, action) => {
+      const { id } = action.payload;
+      const index = state.books.findIndex((book) => book.id == id);
+      state.books[index] = action.payload;
+    },
   },
 });
-export const { deleteBook, createBook } = bookSlice.actions;
+export const { deleteBook, createBook, editBookR } = bookSlice.actions;
 export default bookSlice.reducer;
